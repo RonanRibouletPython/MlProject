@@ -1,0 +1,5 @@
+pandas
+numpy
+seaborn
+# Lauchens automatically setup.py
+-e .
