@@ -1,5 +1,10 @@
 pandas
 numpy
 seaborn
-# Lauchens automatically setup.py
--e .
+matplotlib
+scikit-learn
+catboost
+xgboost
+# Launches automatically setup.py
+# Comment it whenever we install the package
+#-e .
