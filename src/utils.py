@@ -26,7 +26,7 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomException(e, sys)
     
-def evaluate_models(X_train, y_train, X_test, y_test, models,param):
+def evaluate_models(X_train, y_train, X_test, y_test, models, param):
     try:
         # Create the report dict
         report = {}
@@ -40,8 +40,6 @@ def evaluate_models(X_train, y_train, X_test, y_test, models,param):
 
             model.set_params(**gs.best_params_)
             model.fit(X_train,y_train)
-
-            model.fit(X_train, y_train)  # Train model
 
             y_train_pred = model.predict(X_train)
 
