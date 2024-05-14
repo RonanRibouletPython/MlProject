@@ -1,5 +1,3 @@
-# Read the datasets from different sources 
-
 import os
 import sys
 from src.exception import CustomException
@@ -8,6 +6,9 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
 
 # Decorator to define class variables within the class easily
 @dataclass
@@ -52,5 +53,13 @@ class DataIngestion:
         
 if __name__=="__main__":
 
+    # Create the object of the data ingestion
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+
+    # Create the train and test datasets
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    # Create the object of the data transformation
+    data_transformation = DataTransformation()
+    # Transform the train and test datasets
+    data_transformation.initiate_data_transformation(train_data, test_data)

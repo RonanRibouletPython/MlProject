@@ -5,6 +5,7 @@ matplotlib
 scikit-learn
 catboost
 xgboost
+dill
 # Launches automatically setup.py
 # Comment it whenever we install the package
 #-e .
