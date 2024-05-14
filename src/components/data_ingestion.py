@@ -10,6 +10,9 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainerConfig
+
 # Decorator to define class variables within the class easily
 @dataclass
 class DataIngestionConfig:
@@ -62,4 +65,13 @@ if __name__=="__main__":
     # Create the object of the data transformation
     data_transformation = DataTransformation()
     # Transform the train and test datasets
-    data_transformation.initiate_data_transformation(train_data, test_data)
+    #data_transformation.initiate_data_transformation(train_data, test_data)
+
+    # Store the data transformations to the array variables
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data,test_data)
+
+    # Create the model trainer object
+    modeltrainer = ModelTrainer()
+    # This prints the R2 score of the best model selected
+    print(f"R2 score of the best model: {modeltrainer.initiate_model_trainer(train_arr, test_arr)}")
+

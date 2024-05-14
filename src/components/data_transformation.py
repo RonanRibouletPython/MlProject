@@ -50,6 +50,10 @@ class DataTransformation:
                 "test_preparation_course",
                 ]
 
+            # Data standardization is the process of rescaling the attributes so that they have mean as 0 and variance as 1
+            # The ultimate goal to perform standardization is to bring down all the features to a common scale without distorting the differences in the range of the values
+            # In sklearn.preprocessing.StandardScaler(), centering and scaling happens independently on each feature
+
             # This pipeline is intended for the training data
             num_pipeline = Pipeline(
                 steps=[
@@ -116,7 +120,11 @@ class DataTransformation:
 
             logging.info("Applying preprocessing object on training dataframe and testing dataframe")
 
-            input_feature_train_arr  =preprocessing_obj.fit_transform(input_feature_train_df)
+            # Fit the datasets (Explanation why we use different transformations for both datasets)
+            # fit_transform() is used on the training data so that we can scale the training data and also learn the scaling parameters of that data
+            input_feature_train_arr  = preprocessing_obj.fit_transform(input_feature_train_df)
+            # We want scaling to be applied to our test data too and at the same time do not want to be biased with our model
+            # Using the transform method we can use the same mean and variance as it is calculated from our training data to transform our test data
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
             train_arr = np.c_[
@@ -133,6 +141,14 @@ class DataTransformation:
 
                 file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
+            )
+
+            return (
+                # datasets transformed in the form of arrays
+                train_arr,
+                test_arr,
+
+                self.data_transformation_config.preprocessor_obj_file_path
             )
         
         except Exception as e:
