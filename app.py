@@ -55,5 +55,6 @@ def predict_datapoint():
     
 
 if __name__ == "__main__":
-    # Map the app to 127.0.0.1
+    # Map the app to 127.0.0.1 with default port being 5000
+    # To access the site use http://127.0.0.1:5000/
     app.run(host="0.0.0.0")        
